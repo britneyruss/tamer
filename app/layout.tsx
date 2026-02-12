@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display, Dancing_Script } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner";
+import { FeedbackTrigger } from "@/components/feedback";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -42,6 +44,8 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${dancingScript.variable} antialiased`}
         >
           {children}
+          <FeedbackTrigger />
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

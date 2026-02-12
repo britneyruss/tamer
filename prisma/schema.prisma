@@ -19,6 +19,7 @@ model User {
 
   tbrs      TBR[]
   schedules Schedule[]
+  feedbacks Feedback[]
 
   @@map("users")
 }
@@ -73,4 +74,22 @@ model EarlyAccess {
 
   @@unique([email])
   @@map("early_access")
+}
+
+model Feedback {
+  id           String   @id @default(cuid())
+  userId       String?  // Nullable for non-authenticated users
+  feedbackType String   // 'bug', 'feature', 'improvement', 'other'
+  rating       Int?     // 1-5 scale, optional
+  message      String   @db.Text
+  pageUrl      String   // Full path where feedback was submitted
+  userAgent    String?  // Browser/device info
+  createdAt    DateTime @default(now())
+
+  user         User?    @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([feedbackType])
+  @@index([createdAt])
+  @@map("feedback")
 }

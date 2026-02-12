@@ -155,6 +155,23 @@ exports.Prisma.ScheduleScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.EarlyAccessScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.FeedbackScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  feedbackType: 'feedbackType',
+  rating: 'rating',
+  message: 'message',
+  pageUrl: 'pageUrl',
+  userAgent: 'userAgent',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -175,7 +192,9 @@ exports.Prisma.ModelName = {
   User: 'User',
   Book: 'Book',
   TBR: 'TBR',
-  Schedule: 'Schedule'
+  Schedule: 'Schedule',
+  EarlyAccess: 'EarlyAccess',
+  Feedback: 'Feedback'
 };
 
 /**
