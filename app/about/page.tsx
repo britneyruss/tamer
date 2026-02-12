@@ -3,6 +3,7 @@ import { Playfair_Display } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
 import { Nav } from "@/components/landing/nav";
+import { FeedbackLink } from "@/components/feedback";
 import { Footer } from "@/components/landing/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -82,14 +83,14 @@ export default function About() {
                 Friend on Goodreads
               </h3>
               <p className="text-gray-700 mb-6">
-                Connect with us on Goodreads and share your reading journey!
+                Connect with me on Goodreads and share your reading journey!
               </p>
               <Button
                 asChild
                 className="bg-[#FDBA31] text-white hover:bg-[#FDBA31]/90"
               >
                 <a
-                  href="https://www.goodreads.com"
+                  href="https://www.goodreads.com/friend/i?feature=friend-invite-url&invite_token=ZTk5YTk3NDMtNjE5Mi00Y2QxLWE3MjgtOTgyMzdkMzE1MzVi"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -109,15 +110,15 @@ export default function About() {
                 Give Feedback
               </h3>
               <p className="text-gray-700 mb-6">
-                Have ideas or suggestions? We'd love to hear from you!
+                Have ideas or suggestions? I'd love to hear from you!
               </p>
               <Button
                 asChild
                 className="bg-[#FDBA31] text-white hover:bg-[#FDBA31]/90"
               >
-                <Link href="/feedback">
+                <FeedbackLink>
                   Share Your Thoughts
-                </Link>
+                </FeedbackLink>
               </Button>
             </CardContent>
           </Card>

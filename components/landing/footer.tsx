@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Instagram, Mail } from "lucide-react";
+import { FeedbackLink } from "@/components/feedback";
 
 export function Footer() {
   return (
@@ -62,9 +63,9 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/feedback" className="text-white/80 hover:text-white transition-colors text-sm">
+                <FeedbackLink className="text-white/80 hover:text-white transition-colors text-sm cursor-pointer bg-transparent border-none p-0 font-inherit">
                   Give Feedback
-                </Link>
+                </FeedbackLink>
               </li>
             </ul>
           </div>
