@@ -8,9 +8,17 @@ function getPrismaClient(): PrismaClient {
   if (globalForPrisma.prisma) {
     return globalForPrisma.prisma
   }
-  // Lazy import to avoid instantiating PrismaClient during Next.js build phase
+  // Prisma 7 requires an adapter or accelerateUrl. Pass pg adapter with connection string.
+  const connectionString = process.env.DATABASE_URL
+  if (!connectionString) {
+    throw new Error(
+      'DATABASE_URL environment variable is not set. Prisma requires it to connect to the database.'
+    )
+  }
   const { PrismaClient: PrismaClientClass } = require('../prisma/generated/prisma')
-  const client = new PrismaClientClass()
+  const { PrismaPg } = require('@prisma/adapter-pg')
+  const adapter = new PrismaPg({ connectionString })
+  const client = new PrismaClientClass({ adapter })
   if (process.env.NODE_ENV !== 'production') {
     globalForPrisma.prisma = client
   }
