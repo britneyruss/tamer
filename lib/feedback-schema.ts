@@ -12,7 +12,8 @@ export const feedbackSchema = z.object({
     .min(10, "Message must be at least 10 characters")
     .max(2000, "Message must be less than 2000 characters"),
   pageUrl: z.string(),
-  userAgent: z.string().optional()
+  userAgent: z.string().optional(),
+  anonId: z.string().optional(), // Client-provided anonymous ID when not logged in
 })
 
 export type FeedbackInput = z.infer<typeof feedbackSchema>

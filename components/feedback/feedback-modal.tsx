@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback, useEffect } from "react"
+import { useAuth } from "@clerk/nextjs"
 import { toast } from "sonner"
 import {
   Dialog,
@@ -12,6 +13,22 @@ import {
 import { FeedbackForm } from "./feedback-form"
 import type { FeedbackFormInput } from "@/lib/feedback-schema"
 
+const ANON_ID_KEY = "tbr-tamer-anon-id"
+
+function getOrCreateAnonId(): string | undefined {
+  if (typeof window === "undefined") return undefined
+  try {
+    let id = localStorage.getItem(ANON_ID_KEY)
+    if (!id) {
+      id = crypto.randomUUID()
+      localStorage.setItem(ANON_ID_KEY, id)
+    }
+    return id
+  } catch {
+    return undefined
+  }
+}
+
 interface FeedbackModalProps {
   open: boolean
   onOpenChange: (open: boolean) => void
@@ -19,6 +36,7 @@ interface FeedbackModalProps {
 
 export function FeedbackModal({ open, onOpenChange }: FeedbackModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const { isSignedIn } = useAuth()
 
   const handleSubmit = useCallback(async (data: FeedbackFormInput) => {
     setIsSubmitting(true)
@@ -29,6 +47,9 @@ export function FeedbackModal({ open, onOpenChange }: FeedbackModalProps) {
         ? window.location.pathname + window.location.search
         : ""
 
+      // When not signed in, send anonId so we can correlate anonymous feedback
+      const anonId = !isSignedIn ? getOrCreateAnonId() : undefined
+
       const response = await fetch("/api/feedback", {
         method: "POST",
         headers: {
@@ -37,6 +58,7 @@ export function FeedbackModal({ open, onOpenChange }: FeedbackModalProps) {
         body: JSON.stringify({
           ...data,
           pageUrl,
+          ...(anonId && { anonId }),
         }),
       })
 
@@ -58,7 +80,7 @@ export function FeedbackModal({ open, onOpenChange }: FeedbackModalProps) {
     } finally {
       setIsSubmitting(false)
     }
-  }, [onOpenChange])
+  }, [onOpenChange, isSignedIn])
 
   const handleCancel = useCallback(() => {
     if (!isSubmitting) {

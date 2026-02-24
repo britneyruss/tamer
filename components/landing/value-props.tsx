@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, Sparkles, Zap } from "lucide-react";
 import { Playfair_Display } from "next/font/google";
@@ -35,31 +36,14 @@ export function ValueProps() {
                       Your TBR is automatically turned into a clear, week-by-week plan —so the decision is already made.
                     </p>
                   </div>
-                  <div className="flex items-center justify-between gap-6">
-                    <div className="flex-1">
-                      <p className="text-base font-semibold text-gray-600 mb-4">MESSY TBR</p>
-                      <div className="space-y-3">
-                        <div className="h-20 bg-blue-400/30 rounded rotate-[-5deg]"></div>
-                        <div className="h-20 bg-red-400/30 rounded rotate-[3deg] ml-6"></div>
-                        <div className="h-20 bg-purple-400/30 rounded rotate-[-2deg] ml-3"></div>
-                      </div>
-                    </div>
-                    <div className="mx-4">
-                      <svg className="w-16 h-16 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-base font-semibold text-gray-600 mb-4">WEEKLY PLAN</p>
-                      <div className="space-y-4">
-                        <div className="h-16 bg-white border-l-4 border-blue-600 rounded flex items-center px-6 shadow-sm">
-                          <div className="h-3 bg-gray-300 rounded w-3/4"></div>
-                        </div>
-                        <div className="h-16 bg-white border-l-4 border-orange-500 rounded flex items-center px-6 shadow-sm">
-                          <div className="h-3 bg-gray-300 rounded w-2/3"></div>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="flex items-center justify-center">
+                    <Image
+                      src="/images/tbr-messy-to-plan.png"
+                      alt="Messy TBR transforming into a clear weekly plan"
+                      width={600}
+                      height={400}
+                      className="w-full max-w-lg object-contain"
+                    />
                   </div>
                 </div>
               </CardContent>

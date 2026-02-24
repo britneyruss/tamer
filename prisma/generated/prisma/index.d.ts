@@ -1319,13 +1319,11 @@ export namespace Prisma {
   export type UserCountOutputType = {
     tbrs: number
     schedules: number
-    feedbacks: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tbrs?: boolean | UserCountOutputTypeCountTbrsArgs
     schedules?: boolean | UserCountOutputTypeCountSchedulesArgs
-    feedbacks?: boolean | UserCountOutputTypeCountFeedbacksArgs
   }
 
   // Custom InputTypes
@@ -1351,13 +1349,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountSchedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ScheduleWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountFeedbacksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FeedbackWhereInput
   }
 
 
@@ -1571,7 +1562,6 @@ export namespace Prisma {
     updatedAt?: boolean
     tbrs?: boolean | User$tbrsArgs<ExtArgs>
     schedules?: boolean | User$schedulesArgs<ExtArgs>
-    feedbacks?: boolean | User$feedbacksArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1603,7 +1593,6 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tbrs?: boolean | User$tbrsArgs<ExtArgs>
     schedules?: boolean | User$schedulesArgs<ExtArgs>
-    feedbacks?: boolean | User$feedbacksArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1614,7 +1603,6 @@ export namespace Prisma {
     objects: {
       tbrs: Prisma.$TBRPayload<ExtArgs>[]
       schedules: Prisma.$SchedulePayload<ExtArgs>[]
-      feedbacks: Prisma.$FeedbackPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2018,7 +2006,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tbrs<T extends User$tbrsArgs<ExtArgs> = {}>(args?: Subset<T, User$tbrsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TBRPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     schedules<T extends User$schedulesArgs<ExtArgs> = {}>(args?: Subset<T, User$schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    feedbacks<T extends User$feedbacksArgs<ExtArgs> = {}>(args?: Subset<T, User$feedbacksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2486,30 +2473,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ScheduleScalarFieldEnum | ScheduleScalarFieldEnum[]
-  }
-
-  /**
-   * User.feedbacks
-   */
-  export type User$feedbacksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Feedback
-     */
-    select?: FeedbackSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Feedback
-     */
-    omit?: FeedbackOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackInclude<ExtArgs> | null
-    where?: FeedbackWhereInput
-    orderBy?: FeedbackOrderByWithRelationInput | FeedbackOrderByWithRelationInput[]
-    cursor?: FeedbackWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
   }
 
   /**
@@ -6826,6 +6789,7 @@ export namespace Prisma {
   export type FeedbackMinAggregateOutputType = {
     id: string | null
     userId: string | null
+    anonId: string | null
     feedbackType: string | null
     rating: number | null
     message: string | null
@@ -6837,6 +6801,7 @@ export namespace Prisma {
   export type FeedbackMaxAggregateOutputType = {
     id: string | null
     userId: string | null
+    anonId: string | null
     feedbackType: string | null
     rating: number | null
     message: string | null
@@ -6848,6 +6813,7 @@ export namespace Prisma {
   export type FeedbackCountAggregateOutputType = {
     id: number
     userId: number
+    anonId: number
     feedbackType: number
     rating: number
     message: number
@@ -6869,6 +6835,7 @@ export namespace Prisma {
   export type FeedbackMinAggregateInputType = {
     id?: true
     userId?: true
+    anonId?: true
     feedbackType?: true
     rating?: true
     message?: true
@@ -6880,6 +6847,7 @@ export namespace Prisma {
   export type FeedbackMaxAggregateInputType = {
     id?: true
     userId?: true
+    anonId?: true
     feedbackType?: true
     rating?: true
     message?: true
@@ -6891,6 +6859,7 @@ export namespace Prisma {
   export type FeedbackCountAggregateInputType = {
     id?: true
     userId?: true
+    anonId?: true
     feedbackType?: true
     rating?: true
     message?: true
@@ -6989,6 +6958,7 @@ export namespace Prisma {
   export type FeedbackGroupByOutputType = {
     id: string
     userId: string | null
+    anonId: string | null
     feedbackType: string
     rating: number | null
     message: string
@@ -7019,42 +6989,43 @@ export namespace Prisma {
   export type FeedbackSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    anonId?: boolean
     feedbackType?: boolean
     rating?: boolean
     message?: boolean
     pageUrl?: boolean
     userAgent?: boolean
     createdAt?: boolean
-    user?: boolean | Feedback$userArgs<ExtArgs>
   }, ExtArgs["result"]["feedback"]>
 
   export type FeedbackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    anonId?: boolean
     feedbackType?: boolean
     rating?: boolean
     message?: boolean
     pageUrl?: boolean
     userAgent?: boolean
     createdAt?: boolean
-    user?: boolean | Feedback$userArgs<ExtArgs>
   }, ExtArgs["result"]["feedback"]>
 
   export type FeedbackSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    anonId?: boolean
     feedbackType?: boolean
     rating?: boolean
     message?: boolean
     pageUrl?: boolean
     userAgent?: boolean
     createdAt?: boolean
-    user?: boolean | Feedback$userArgs<ExtArgs>
   }, ExtArgs["result"]["feedback"]>
 
   export type FeedbackSelectScalar = {
     id?: boolean
     userId?: boolean
+    anonId?: boolean
     feedbackType?: boolean
     rating?: boolean
     message?: boolean
@@ -7063,25 +7034,15 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type FeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "feedbackType" | "rating" | "message" | "pageUrl" | "userAgent" | "createdAt", ExtArgs["result"]["feedback"]>
-  export type FeedbackInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Feedback$userArgs<ExtArgs>
-  }
-  export type FeedbackIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Feedback$userArgs<ExtArgs>
-  }
-  export type FeedbackIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | Feedback$userArgs<ExtArgs>
-  }
+  export type FeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "anonId" | "feedbackType" | "rating" | "message" | "pageUrl" | "userAgent" | "createdAt", ExtArgs["result"]["feedback"]>
 
   export type $FeedbackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Feedback"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs> | null
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string | null
+      anonId: string | null
       feedbackType: string
       rating: number | null
       message: string
@@ -7482,7 +7443,6 @@ export namespace Prisma {
    */
   export interface Prisma__FeedbackClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends Feedback$userArgs<ExtArgs> = {}>(args?: Subset<T, Feedback$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7514,6 +7474,7 @@ export namespace Prisma {
   interface FeedbackFieldRefs {
     readonly id: FieldRef<"Feedback", 'String'>
     readonly userId: FieldRef<"Feedback", 'String'>
+    readonly anonId: FieldRef<"Feedback", 'String'>
     readonly feedbackType: FieldRef<"Feedback", 'String'>
     readonly rating: FieldRef<"Feedback", 'Int'>
     readonly message: FieldRef<"Feedback", 'String'>
@@ -7537,10 +7498,6 @@ export namespace Prisma {
      */
     omit?: FeedbackOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackInclude<ExtArgs> | null
-    /**
      * Filter, which Feedback to fetch.
      */
     where: FeedbackWhereUniqueInput
@@ -7559,10 +7516,6 @@ export namespace Prisma {
      */
     omit?: FeedbackOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackInclude<ExtArgs> | null
-    /**
      * Filter, which Feedback to fetch.
      */
     where: FeedbackWhereUniqueInput
@@ -7580,10 +7533,6 @@ export namespace Prisma {
      * Omit specific fields from the Feedback
      */
     omit?: FeedbackOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackInclude<ExtArgs> | null
     /**
      * Filter, which Feedback to fetch.
      */
@@ -7633,10 +7582,6 @@ export namespace Prisma {
      */
     omit?: FeedbackOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackInclude<ExtArgs> | null
-    /**
      * Filter, which Feedback to fetch.
      */
     where?: FeedbackWhereInput
@@ -7685,10 +7630,6 @@ export namespace Prisma {
      */
     omit?: FeedbackOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackInclude<ExtArgs> | null
-    /**
      * Filter, which Feedbacks to fetch.
      */
     where?: FeedbackWhereInput
@@ -7732,10 +7673,6 @@ export namespace Prisma {
      */
     omit?: FeedbackOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackInclude<ExtArgs> | null
-    /**
      * The data needed to create a Feedback.
      */
     data: XOR<FeedbackCreateInput, FeedbackUncheckedCreateInput>
@@ -7769,10 +7706,6 @@ export namespace Prisma {
      */
     data: FeedbackCreateManyInput | FeedbackCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7787,10 +7720,6 @@ export namespace Prisma {
      * Omit specific fields from the Feedback
      */
     omit?: FeedbackOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackInclude<ExtArgs> | null
     /**
      * The data needed to update a Feedback.
      */
@@ -7843,10 +7772,6 @@ export namespace Prisma {
      * Limit how many Feedbacks to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7861,10 +7786,6 @@ export namespace Prisma {
      * Omit specific fields from the Feedback
      */
     omit?: FeedbackOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackInclude<ExtArgs> | null
     /**
      * The filter to search for the Feedback to update in case it exists.
      */
@@ -7892,10 +7813,6 @@ export namespace Prisma {
      */
     omit?: FeedbackOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackInclude<ExtArgs> | null
-    /**
      * Filter which Feedback to delete.
      */
     where: FeedbackWhereUniqueInput
@@ -7916,25 +7833,6 @@ export namespace Prisma {
   }
 
   /**
-   * Feedback.user
-   */
-  export type Feedback$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
    * Feedback without action
    */
   export type FeedbackDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7946,10 +7844,6 @@ export namespace Prisma {
      * Omit specific fields from the Feedback
      */
     omit?: FeedbackOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FeedbackInclude<ExtArgs> | null
   }
 
 
@@ -8026,6 +7920,7 @@ export namespace Prisma {
   export const FeedbackScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    anonId: 'anonId',
     feedbackType: 'feedbackType',
     rating: 'rating',
     message: 'message',
@@ -8136,7 +8031,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     tbrs?: TBRListRelationFilter
     schedules?: ScheduleListRelationFilter
-    feedbacks?: FeedbackListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -8147,7 +8041,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
     tbrs?: TBROrderByRelationAggregateInput
     schedules?: ScheduleOrderByRelationAggregateInput
-    feedbacks?: FeedbackOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -8161,7 +8054,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     tbrs?: TBRListRelationFilter
     schedules?: ScheduleListRelationFilter
-    feedbacks?: FeedbackListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -8426,25 +8318,25 @@ export namespace Prisma {
     NOT?: FeedbackWhereInput | FeedbackWhereInput[]
     id?: StringFilter<"Feedback"> | string
     userId?: StringNullableFilter<"Feedback"> | string | null
+    anonId?: StringNullableFilter<"Feedback"> | string | null
     feedbackType?: StringFilter<"Feedback"> | string
     rating?: IntNullableFilter<"Feedback"> | number | null
     message?: StringFilter<"Feedback"> | string
     pageUrl?: StringFilter<"Feedback"> | string
     userAgent?: StringNullableFilter<"Feedback"> | string | null
     createdAt?: DateTimeFilter<"Feedback"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type FeedbackOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrderInput | SortOrder
+    anonId?: SortOrderInput | SortOrder
     feedbackType?: SortOrder
     rating?: SortOrderInput | SortOrder
     message?: SortOrder
     pageUrl?: SortOrder
     userAgent?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
   }
 
   export type FeedbackWhereUniqueInput = Prisma.AtLeast<{
@@ -8453,18 +8345,19 @@ export namespace Prisma {
     OR?: FeedbackWhereInput[]
     NOT?: FeedbackWhereInput | FeedbackWhereInput[]
     userId?: StringNullableFilter<"Feedback"> | string | null
+    anonId?: StringNullableFilter<"Feedback"> | string | null
     feedbackType?: StringFilter<"Feedback"> | string
     rating?: IntNullableFilter<"Feedback"> | number | null
     message?: StringFilter<"Feedback"> | string
     pageUrl?: StringFilter<"Feedback"> | string
     userAgent?: StringNullableFilter<"Feedback"> | string | null
     createdAt?: DateTimeFilter<"Feedback"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type FeedbackOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrderInput | SortOrder
+    anonId?: SortOrderInput | SortOrder
     feedbackType?: SortOrder
     rating?: SortOrderInput | SortOrder
     message?: SortOrder
@@ -8484,6 +8377,7 @@ export namespace Prisma {
     NOT?: FeedbackScalarWhereWithAggregatesInput | FeedbackScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Feedback"> | string
     userId?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    anonId?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
     feedbackType?: StringWithAggregatesFilter<"Feedback"> | string
     rating?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
     message?: StringWithAggregatesFilter<"Feedback"> | string
@@ -8500,7 +8394,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     tbrs?: TBRCreateNestedManyWithoutUserInput
     schedules?: ScheduleCreateNestedManyWithoutUserInput
-    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -8511,7 +8404,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     tbrs?: TBRUncheckedCreateNestedManyWithoutUserInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutUserInput
-    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -8522,7 +8414,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tbrs?: TBRUpdateManyWithoutUserNestedInput
     schedules?: ScheduleUpdateManyWithoutUserNestedInput
-    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8533,7 +8424,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tbrs?: TBRUncheckedUpdateManyWithoutUserNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutUserNestedInput
-    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8797,18 +8687,20 @@ export namespace Prisma {
 
   export type FeedbackCreateInput = {
     id?: string
+    userId?: string | null
+    anonId?: string | null
     feedbackType: string
     rating?: number | null
     message: string
     pageUrl: string
     userAgent?: string | null
     createdAt?: Date | string
-    user?: UserCreateNestedOneWithoutFeedbacksInput
   }
 
   export type FeedbackUncheckedCreateInput = {
     id?: string
     userId?: string | null
+    anonId?: string | null
     feedbackType: string
     rating?: number | null
     message: string
@@ -8819,18 +8711,20 @@ export namespace Prisma {
 
   export type FeedbackUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    anonId?: NullableStringFieldUpdateOperationsInput | string | null
     feedbackType?: StringFieldUpdateOperationsInput | string
     rating?: NullableIntFieldUpdateOperationsInput | number | null
     message?: StringFieldUpdateOperationsInput | string
     pageUrl?: StringFieldUpdateOperationsInput | string
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutFeedbacksNestedInput
   }
 
   export type FeedbackUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    anonId?: NullableStringFieldUpdateOperationsInput | string | null
     feedbackType?: StringFieldUpdateOperationsInput | string
     rating?: NullableIntFieldUpdateOperationsInput | number | null
     message?: StringFieldUpdateOperationsInput | string
@@ -8842,6 +8736,7 @@ export namespace Prisma {
   export type FeedbackCreateManyInput = {
     id?: string
     userId?: string | null
+    anonId?: string | null
     feedbackType: string
     rating?: number | null
     message: string
@@ -8852,6 +8747,8 @@ export namespace Prisma {
 
   export type FeedbackUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    anonId?: NullableStringFieldUpdateOperationsInput | string | null
     feedbackType?: StringFieldUpdateOperationsInput | string
     rating?: NullableIntFieldUpdateOperationsInput | number | null
     message?: StringFieldUpdateOperationsInput | string
@@ -8863,6 +8760,7 @@ export namespace Prisma {
   export type FeedbackUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    anonId?: NullableStringFieldUpdateOperationsInput | string | null
     feedbackType?: StringFieldUpdateOperationsInput | string
     rating?: NullableIntFieldUpdateOperationsInput | number | null
     message?: StringFieldUpdateOperationsInput | string
@@ -8924,12 +8822,6 @@ export namespace Prisma {
     none?: ScheduleWhereInput
   }
 
-  export type FeedbackListRelationFilter = {
-    every?: FeedbackWhereInput
-    some?: FeedbackWhereInput
-    none?: FeedbackWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -8940,10 +8832,6 @@ export namespace Prisma {
   }
 
   export type ScheduleOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type FeedbackOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9181,14 +9069,10 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type UserNullableScalarRelationFilter = {
-    is?: UserWhereInput | null
-    isNot?: UserWhereInput | null
-  }
-
   export type FeedbackCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    anonId?: SortOrder
     feedbackType?: SortOrder
     rating?: SortOrder
     message?: SortOrder
@@ -9204,6 +9088,7 @@ export namespace Prisma {
   export type FeedbackMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    anonId?: SortOrder
     feedbackType?: SortOrder
     rating?: SortOrder
     message?: SortOrder
@@ -9215,6 +9100,7 @@ export namespace Prisma {
   export type FeedbackMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    anonId?: SortOrder
     feedbackType?: SortOrder
     rating?: SortOrder
     message?: SortOrder
@@ -9257,13 +9143,6 @@ export namespace Prisma {
     connect?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
   }
 
-  export type FeedbackCreateNestedManyWithoutUserInput = {
-    create?: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput> | FeedbackCreateWithoutUserInput[] | FeedbackUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FeedbackCreateOrConnectWithoutUserInput | FeedbackCreateOrConnectWithoutUserInput[]
-    createMany?: FeedbackCreateManyUserInputEnvelope
-    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
-  }
-
   export type TBRUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<TBRCreateWithoutUserInput, TBRUncheckedCreateWithoutUserInput> | TBRCreateWithoutUserInput[] | TBRUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TBRCreateOrConnectWithoutUserInput | TBRCreateOrConnectWithoutUserInput[]
@@ -9276,13 +9155,6 @@ export namespace Prisma {
     connectOrCreate?: ScheduleCreateOrConnectWithoutUserInput | ScheduleCreateOrConnectWithoutUserInput[]
     createMany?: ScheduleCreateManyUserInputEnvelope
     connect?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
-  }
-
-  export type FeedbackUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput> | FeedbackCreateWithoutUserInput[] | FeedbackUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FeedbackCreateOrConnectWithoutUserInput | FeedbackCreateOrConnectWithoutUserInput[]
-    createMany?: FeedbackCreateManyUserInputEnvelope
-    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -9325,20 +9197,6 @@ export namespace Prisma {
     deleteMany?: ScheduleScalarWhereInput | ScheduleScalarWhereInput[]
   }
 
-  export type FeedbackUpdateManyWithoutUserNestedInput = {
-    create?: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput> | FeedbackCreateWithoutUserInput[] | FeedbackUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FeedbackCreateOrConnectWithoutUserInput | FeedbackCreateOrConnectWithoutUserInput[]
-    upsert?: FeedbackUpsertWithWhereUniqueWithoutUserInput | FeedbackUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: FeedbackCreateManyUserInputEnvelope
-    set?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
-    disconnect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
-    delete?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
-    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
-    update?: FeedbackUpdateWithWhereUniqueWithoutUserInput | FeedbackUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: FeedbackUpdateManyWithWhereWithoutUserInput | FeedbackUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
-  }
-
   export type TBRUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<TBRCreateWithoutUserInput, TBRUncheckedCreateWithoutUserInput> | TBRCreateWithoutUserInput[] | TBRUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TBRCreateOrConnectWithoutUserInput | TBRCreateOrConnectWithoutUserInput[]
@@ -9365,20 +9223,6 @@ export namespace Prisma {
     update?: ScheduleUpdateWithWhereUniqueWithoutUserInput | ScheduleUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: ScheduleUpdateManyWithWhereWithoutUserInput | ScheduleUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ScheduleScalarWhereInput | ScheduleScalarWhereInput[]
-  }
-
-  export type FeedbackUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput> | FeedbackCreateWithoutUserInput[] | FeedbackUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: FeedbackCreateOrConnectWithoutUserInput | FeedbackCreateOrConnectWithoutUserInput[]
-    upsert?: FeedbackUpsertWithWhereUniqueWithoutUserInput | FeedbackUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: FeedbackCreateManyUserInputEnvelope
-    set?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
-    disconnect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
-    delete?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
-    connect?: FeedbackWhereUniqueInput | FeedbackWhereUniqueInput[]
-    update?: FeedbackUpdateWithWhereUniqueWithoutUserInput | FeedbackUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: FeedbackUpdateManyWithWhereWithoutUserInput | FeedbackUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
   }
 
   export type TBRCreateNestedManyWithoutBookInput = {
@@ -9529,28 +9373,12 @@ export namespace Prisma {
     update?: XOR<XOR<BookUpdateToOneWithWhereWithoutSchedulesInput, BookUpdateWithoutSchedulesInput>, BookUncheckedUpdateWithoutSchedulesInput>
   }
 
-  export type UserCreateNestedOneWithoutFeedbacksInput = {
-    create?: XOR<UserCreateWithoutFeedbacksInput, UserUncheckedCreateWithoutFeedbacksInput>
-    connectOrCreate?: UserCreateOrConnectWithoutFeedbacksInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type UserUpdateOneWithoutFeedbacksNestedInput = {
-    create?: XOR<UserCreateWithoutFeedbacksInput, UserUncheckedCreateWithoutFeedbacksInput>
-    connectOrCreate?: UserCreateOrConnectWithoutFeedbacksInput
-    upsert?: UserUpsertWithoutFeedbacksInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFeedbacksInput, UserUpdateWithoutFeedbacksInput>, UserUncheckedUpdateWithoutFeedbacksInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9770,36 +9598,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type FeedbackCreateWithoutUserInput = {
-    id?: string
-    feedbackType: string
-    rating?: number | null
-    message: string
-    pageUrl: string
-    userAgent?: string | null
-    createdAt?: Date | string
-  }
-
-  export type FeedbackUncheckedCreateWithoutUserInput = {
-    id?: string
-    feedbackType: string
-    rating?: number | null
-    message: string
-    pageUrl: string
-    userAgent?: string | null
-    createdAt?: Date | string
-  }
-
-  export type FeedbackCreateOrConnectWithoutUserInput = {
-    where: FeedbackWhereUniqueInput
-    create: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput>
-  }
-
-  export type FeedbackCreateManyUserInputEnvelope = {
-    data: FeedbackCreateManyUserInput | FeedbackCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type TBRUpsertWithWhereUniqueWithoutUserInput = {
     where: TBRWhereUniqueInput
     update: XOR<TBRUpdateWithoutUserInput, TBRUncheckedUpdateWithoutUserInput>
@@ -9855,36 +9653,6 @@ export namespace Prisma {
     status?: StringFilter<"Schedule"> | string
     createdAt?: DateTimeFilter<"Schedule"> | Date | string
     updatedAt?: DateTimeFilter<"Schedule"> | Date | string
-  }
-
-  export type FeedbackUpsertWithWhereUniqueWithoutUserInput = {
-    where: FeedbackWhereUniqueInput
-    update: XOR<FeedbackUpdateWithoutUserInput, FeedbackUncheckedUpdateWithoutUserInput>
-    create: XOR<FeedbackCreateWithoutUserInput, FeedbackUncheckedCreateWithoutUserInput>
-  }
-
-  export type FeedbackUpdateWithWhereUniqueWithoutUserInput = {
-    where: FeedbackWhereUniqueInput
-    data: XOR<FeedbackUpdateWithoutUserInput, FeedbackUncheckedUpdateWithoutUserInput>
-  }
-
-  export type FeedbackUpdateManyWithWhereWithoutUserInput = {
-    where: FeedbackScalarWhereInput
-    data: XOR<FeedbackUpdateManyMutationInput, FeedbackUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type FeedbackScalarWhereInput = {
-    AND?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
-    OR?: FeedbackScalarWhereInput[]
-    NOT?: FeedbackScalarWhereInput | FeedbackScalarWhereInput[]
-    id?: StringFilter<"Feedback"> | string
-    userId?: StringNullableFilter<"Feedback"> | string | null
-    feedbackType?: StringFilter<"Feedback"> | string
-    rating?: IntNullableFilter<"Feedback"> | number | null
-    message?: StringFilter<"Feedback"> | string
-    pageUrl?: StringFilter<"Feedback"> | string
-    userAgent?: StringNullableFilter<"Feedback"> | string | null
-    createdAt?: DateTimeFilter<"Feedback"> | Date | string
   }
 
   export type TBRCreateWithoutBookInput = {
@@ -9980,7 +9748,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     schedules?: ScheduleCreateNestedManyWithoutUserInput
-    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTbrsInput = {
@@ -9990,7 +9757,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     schedules?: ScheduleUncheckedCreateNestedManyWithoutUserInput
-    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTbrsInput = {
@@ -10039,7 +9805,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     schedules?: ScheduleUpdateManyWithoutUserNestedInput
-    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTbrsInput = {
@@ -10049,7 +9814,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     schedules?: ScheduleUncheckedUpdateManyWithoutUserNestedInput
-    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BookUpsertWithoutTbrsInput = {
@@ -10088,7 +9852,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     tbrs?: TBRCreateNestedManyWithoutUserInput
-    feedbacks?: FeedbackCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSchedulesInput = {
@@ -10098,7 +9861,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     tbrs?: TBRUncheckedCreateNestedManyWithoutUserInput
-    feedbacks?: FeedbackUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSchedulesInput = {
@@ -10147,7 +9909,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tbrs?: TBRUpdateManyWithoutUserNestedInput
-    feedbacks?: FeedbackUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSchedulesInput = {
@@ -10157,7 +9918,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tbrs?: TBRUncheckedUpdateManyWithoutUserNestedInput
-    feedbacks?: FeedbackUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BookUpsertWithoutSchedulesInput = {
@@ -10189,62 +9949,6 @@ export namespace Prisma {
     tbrs?: TBRUncheckedUpdateManyWithoutBookNestedInput
   }
 
-  export type UserCreateWithoutFeedbacksInput = {
-    id?: string
-    email: string
-    name?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    tbrs?: TBRCreateNestedManyWithoutUserInput
-    schedules?: ScheduleCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutFeedbacksInput = {
-    id?: string
-    email: string
-    name?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    tbrs?: TBRUncheckedCreateNestedManyWithoutUserInput
-    schedules?: ScheduleUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutFeedbacksInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutFeedbacksInput, UserUncheckedCreateWithoutFeedbacksInput>
-  }
-
-  export type UserUpsertWithoutFeedbacksInput = {
-    update: XOR<UserUpdateWithoutFeedbacksInput, UserUncheckedUpdateWithoutFeedbacksInput>
-    create: XOR<UserCreateWithoutFeedbacksInput, UserUncheckedCreateWithoutFeedbacksInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutFeedbacksInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutFeedbacksInput, UserUncheckedUpdateWithoutFeedbacksInput>
-  }
-
-  export type UserUpdateWithoutFeedbacksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tbrs?: TBRUpdateManyWithoutUserNestedInput
-    schedules?: ScheduleUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutFeedbacksInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tbrs?: TBRUncheckedUpdateManyWithoutUserNestedInput
-    schedules?: ScheduleUncheckedUpdateManyWithoutUserNestedInput
-  }
-
   export type TBRCreateManyUserInput = {
     id?: string
     bookId: string
@@ -10260,16 +9964,6 @@ export namespace Prisma {
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-  }
-
-  export type FeedbackCreateManyUserInput = {
-    id?: string
-    feedbackType: string
-    rating?: number | null
-    message: string
-    pageUrl: string
-    userAgent?: string | null
-    createdAt?: Date | string
   }
 
   export type TBRUpdateWithoutUserInput = {
@@ -10321,36 +10015,6 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FeedbackUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    feedbackType?: StringFieldUpdateOperationsInput | string
-    rating?: NullableIntFieldUpdateOperationsInput | number | null
-    message?: StringFieldUpdateOperationsInput | string
-    pageUrl?: StringFieldUpdateOperationsInput | string
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FeedbackUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    feedbackType?: StringFieldUpdateOperationsInput | string
-    rating?: NullableIntFieldUpdateOperationsInput | number | null
-    message?: StringFieldUpdateOperationsInput | string
-    pageUrl?: StringFieldUpdateOperationsInput | string
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type FeedbackUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    feedbackType?: StringFieldUpdateOperationsInput | string
-    rating?: NullableIntFieldUpdateOperationsInput | number | null
-    message?: StringFieldUpdateOperationsInput | string
-    pageUrl?: StringFieldUpdateOperationsInput | string
-    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TBRCreateManyBookInput = {

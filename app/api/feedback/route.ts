@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { randomUUID } from 'node:crypto'
 import { auth } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/prisma'
 import { feedbackSchema } from '@/lib/feedback-schema'
@@ -30,14 +31,19 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { feedbackType, rating, message, pageUrl } = validationResult.data
+    const { feedbackType, rating, message, pageUrl, anonId: clientAnonId } = validationResult.data
+
+    // When logged in: store Clerk userId. When anonymous: store anonId (client-provided or generate)
+    const clerkUserId = userId ?? null
+    const anonId = !clerkUserId ? (clientAnonId || randomUUID()) : null
 
     // Create feedback record in database
     const feedback = await prisma.feedback.create({
       data: {
-        userId: userId || null,
+        userId: clerkUserId,
+        anonId,
         feedbackType,
-        rating: rating || null,
+        rating: rating ?? null,
         message,
         pageUrl,
         userAgent,

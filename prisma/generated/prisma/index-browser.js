@@ -164,6 +164,7 @@ exports.Prisma.EarlyAccessScalarFieldEnum = {
 exports.Prisma.FeedbackScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  anonId: 'anonId',
   feedbackType: 'feedbackType',
   rating: 'rating',
   message: 'message',

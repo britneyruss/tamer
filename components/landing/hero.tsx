@@ -94,11 +94,6 @@ export function Hero() {
                   {successMessage}
                 </p>
               )}
-              {!successMessage && (
-                <p className="text-sm text-gray-300">
-                  Free forever for core features. No credit card required.
-                </p>
-              )}
             </div>
           </div>
 
