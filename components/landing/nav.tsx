@@ -7,6 +7,7 @@ import {
   SignedIn, 
   SignedOut 
 } from "@clerk/nextjs";
+import { LayoutDashboard } from "lucide-react";
 import { Playfair_Display } from "next/font/google";
 const playfairDisplay = Playfair_Display({
   variable: "--font-serif",
@@ -46,7 +47,11 @@ export function Nav() {
               FAQ
             </Link>
             <SignedOut>
-              <SignInButton mode="modal">
+              <SignInButton
+                mode="modal"
+                forceRedirectUrl="/dashboard"
+                fallbackRedirectUrl="/dashboard"
+              >
                 <Button
                   className="bg-[#FDBA31] text-white hover:bg-[#FDBA31]/90 rounded-md"
                   size="default"
@@ -56,6 +61,13 @@ export function Nav() {
               </SignInButton>
             </SignedOut>
             <SignedIn>
+              <Button
+                asChild
+                className="bg-[#FDBA31] text-white hover:bg-[#FDBA31]/90 rounded-md"
+                size="default"
+              >
+                <Link href="/dashboard">Dashboard</Link>
+              </Button>
               <UserButton 
                 appearance={{
                   elements: {
@@ -69,7 +81,11 @@ export function Nav() {
           {/* Mobile menu button - can be enhanced later */}
           <div className="md:hidden flex items-center gap-2">
             <SignedOut>
-              <SignInButton mode="modal">
+              <SignInButton
+                mode="modal"
+                forceRedirectUrl="/dashboard"
+                fallbackRedirectUrl="/dashboard"
+              >
                 <Button
                   variant="ghost"
                   size="icon"
@@ -92,6 +108,11 @@ export function Nav() {
               </SignInButton>
             </SignedOut>
             <SignedIn>
+              <Button asChild variant="ghost" size="icon" className="text-white">
+                <Link href="/dashboard" aria-label="Go to dashboard">
+                  <LayoutDashboard className="h-6 w-6" />
+                </Link>
+              </Button>
               <UserButton 
                 appearance={{
                   elements: {
